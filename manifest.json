@@ -1,0 +1,10 @@
+{
+  "name": "Raza Online Islamic Academy - Student Portal",
+  "short_name": "Raza Academy",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#047857",
+  "description": "Raza Online Islamic Academy Student Portal",
+  "icons": []
+}
