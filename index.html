@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +10,219 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 font-sans antialiased">
-    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-            <h1 class="text-2xl font-bold text-emerald-800 mb-2">Raza Online Islamic Academy</h1>
-            <p class="text-slate-600 mb-6">Student Portal is loading...</p>
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto"></div>
+<body class="h-full flex flex-col justify-between font-sans antialiased text-slate-800">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-emerald-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-800 p-2 rounded-lg border border-emerald-700">
+                    <i class="fa-solid fa-graduation-cap text-emerald-300 text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-wide">Raza Online Islamic Academy</h1>
+                    <span class="text-xs text-emerald-300 font-medium">Student Portal Dashboard</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span id="user-badge" class="hidden text-sm bg-emerald-800 px-3 py-1 rounded-full border border-emerald-700"></span>
+                <button onclick="logout()" id="logout-btn" class="hidden text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-sm">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </button>
+            </div>
         </div>
-    </div>
+    </header>
+
+    <!-- Main Dynamic Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- LOGIN VIEW -->
+        <div id="login-view" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-slate-100 p-8 mt-6">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-50 text-emerald-700 rounded-full mb-4 shadow-inner">
+                    <i class="fa-solid fa-user-lock text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Student Portal Login</h2>
+                <p class="text-sm text-slate-500 mt-1">Enter your credentials to access your portal</p>
+            </div>
+
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Student Email</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition" placeholder="student@razaacademy.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="password" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div id="login-error" class="hidden text-xs text-red-600 bg-red-50 p-3 rounded-lg text-center font-medium border border-red-100"></div>
+
+                <button type="submit" id="login-submit-btn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-emerald-700/20 text-sm">
+                    Sign In to Portal
+                </button>
+            </form>
+        </div>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard-view" class="hidden space-y-6">
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-emerald-800 to-teal-700 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold" id="welcome-name">Welcome Back, Student</h2>
+                    <p class="text-emerald-100 text-sm mt-1">May Allah bless your pursuit of sacred Islamic knowledge.</p>
+                </div>
+                <div class="bg-emerald-900/60 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-600/50 text-xs font-medium">
+                    <i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i> Status: Active Enrolment
+                </div>
+            </div>
+
+            <!-- Quick Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-book-quran"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Enrolled Courses</p>
+                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">3 Active</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Attendance</p>
+                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">96%</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Certificates</p>
+                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">1 Earned</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tabs Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Courses Section -->
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-list-check text-emerald-700 mr-2"></i> Your Current Courses
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-sm text-slate-800">Dars-e-Nizami Core Studies</h4>
+                                <p class="text-xs text-slate-500 mt-0.5">Instructor: Allama Qadri</p>
+                            </div>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-sm text-slate-800">Tajweed & Qirat Masterclass</h4>
+                                <p class="text-xs text-slate-500 mt-0.5">Instructor: Qari Raza</p>
+                            </div>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Announcements Section -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-bullhorn text-emerald-700 mr-2"></i> Announcements
+                    </h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-emerald-50/60 border border-emerald-100 rounded-xl">
+                            <span class="font-bold text-emerald-900 block mb-1">Monthly Exam Schedule</span>
+                            <p class="text-slate-600">Upcoming exams will commence from next Monday. Prepare well.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                            <span class="font-bold text-slate-800 block mb-1">Live Class Link Updated</span>
+                            <p class="text-slate-600">Check your student group for the new Zoom timings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        &copy; 2026 Raza Online Islamic Academy. All rights reserved.
+    </footer>
+
+    <!-- App Logic Script -->
     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('roa_student');
+            if(savedUser) {
+                showDashboard(savedUser);
+            }
+        });
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            const btn = document.getElementById('login-submit-btn');
+
+            btn.disabled = true;
+            btn.innerText = "Signing in...";
+            errorDiv.classList.add('hidden');
+
+            setTimeout(() => {
+                if(email && password.length >= 4) {
+                    localStorage.setItem('roa_student', email);
+                    showDashboard(email);
+                } else {
+                    errorDiv.innerText = "Please enter valid credentials (password min 4 chars).";
+                    errorDiv.classList.remove('hidden');
+                    btn.disabled = false;
+                    btn.innerText = "Sign In to Portal";
+                }
+            }, 600);
+        }
+
+        function showDashboard(email) {
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            document.getElementById('logout-btn').classList.remove('hidden');
+            const badge = document.getElementById('user-badge');
+            badge.innerText = email;
+            badge.classList.remove('hidden');
+            document.getElementById('welcome-name').innerText = `Welcome Back, ${email.split('@')[0]}`;
+        }
+
+        function logout() {
+            localStorage.removeItem('roa_student');
+            location.reload();
+        }
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('Service Worker Registered'));
+                .then(() => console.log('Service Worker Registered Successfully'));
         }
     </script>
 </body>
