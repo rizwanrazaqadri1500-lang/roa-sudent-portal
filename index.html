@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50">
+<html lang="en" class="h-full bg-slate-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,226 +7,396 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="h-full flex flex-col justify-between font-sans antialiased text-slate-800">
+<body class="h-full flex font-sans antialiased text-slate-800 overflow-hidden">
 
-    <!-- Top Navigation Bar -->
-    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-emerald-700 p-2 rounded-lg border border-emerald-600">
-                    <i class="fa-solid fa-shield-halved text-white text-xl"></i>
-                </div>
+    <!-- SIDEBAR (Admin Navigation) -->
+    <aside id="sidebar" class="w-64 bg-slate-900 text-slate-300 flex flex-col justify-between hidden md:flex z-20 shadow-xl">
+        <div>
+            <div class="p-5 bg-amber-500 text-slate-950 flex items-center space-x-3">
+                <div class="font-black text-xl tracking-wider bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg">ROA</div>
                 <div>
-                    <h1 class="font-bold text-lg leading-tight tracking-wide">Raza Online Islamic Academy</h1>
-                    <span id="portal-subtitle" class="text-xs text-slate-400 font-medium">Admin Management Portal</span>
+                    <h1 class="font-bold text-sm leading-tight">Raza Online Islamic</h1>
+                    <span class="text-[11px] font-semibold text-slate-900 block">Management Portal</span>
                 </div>
             </div>
+            <nav class="p-4 space-y-1 text-sm font-medium">
+                <button onclick="switchTab('add-student')" id="nav-add-student" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-blue-600 text-white transition shadow-sm">
+                    <i class="fa-solid fa-user-plus w-5"></i><span>Add Student</span>
+                </button>
+                <button onclick="switchTab('directory')" id="nav-directory" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-users w-5"></i><span>Students Directory</span>
+                </button>
+                <button onclick="switchTab('sabaq')" id="nav-sabaq" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-book-open w-5"></i><span>Daily Sabaq & Attendance</span>
+                </button>
+                <button onclick="switchTab('ibadat')" id="nav-ibadat" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-mosque w-5"></i><span>Daily Ibadat & Namaz</span>
+                </button>
+                <button onclick="switchTab('exams')" id="nav-exams" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-award w-5"></i><span>Monthly Exams & Results</span>
+                </button>
+                <button onclick="switchTab('fees')" id="nav-fees" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Fees & Vouchers</span>
+                </button>
+                <button onclick="switchTab('zakat')" id="nav-zakat" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-hand-holding-dollar w-5"></i><span>Zakat Receipt Generator</span>
+                </button>
+                <button onclick="switchTab('library')" id="nav-library" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-5"></i><span>Islamic Books Library</span>
+                </button>
+            </nav>
+        </div>
+        <div class="p-4 border-t border-slate-800">
+            <button onclick="logoutAdmin()" class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 transition text-sm font-medium">
+                <i class="fa-solid fa-right-from-bracket w-5"></i><span>Logout Portal</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        
+        <!-- Top Header -->
+        <header class="bg-slate-900 text-white shadow-md h-16 flex items-center justify-between px-6 z-10">
             <div class="flex items-center space-x-3">
-                <span class="bg-emerald-900/80 text-emerald-300 text-xs px-3 py-1.5 rounded-full border border-emerald-700 font-medium flex items-center">
-                    <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1.5 animate-pulse"></i> Stable System
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-slate-300 hover:text-white text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div>
+                    <h2 class="font-bold text-lg leading-tight">Raza Online Islamic Academy</h2>
+                    <span id="top-subtitle" class="text-xs text-slate-400">Admin & Student Management Portal</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs px-3 py-1 rounded-full font-medium flex items-center">
+                    <i class="fa-solid fa-circle text-[8px] mr-1.5 animate-pulse"></i> System Active
                 </span>
-                <button onclick="toggleView()" id="view-switch-btn" class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow">
-                    Switch to Student Portal
+                <button onclick="toggleMainView()" id="view-switch-btn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow">
+                    Switch to Student View
                 </button>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <!-- ADMIN VIEW -->
-        <div id="admin-view" class="space-y-8">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
-                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                    <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-user-gear"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-900">Student Profile & Login Manager</h2>
-                        <p class="text-xs text-slate-500">Yahan details update karein, yeh automatically student portal ke sath sync ho jayengi.</p>
-                    </div>
-                </div>
-
-                <form onsubmit="handleSaveStudent(event)" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <!-- Student Name -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student Name *</label>
-                            <input type="text" id="input-name" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
-                        </div>
-
-                        <!-- Father's Name -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Father's Name *</label>
-                            <input type="text" id="input-father" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
-                        </div>
-
-                        <!-- Student ID Field -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID (Portal Login) *</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                                    <i class="fa-solid fa-id-card"></i>
-                                </span>
-                                <input type="text" id="input-id" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition uppercase font-semibold text-emerald-800" placeholder="ROA-2026-0001">
+        <!-- Scrollable Content Area -->
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+            
+            <!-- ADMIN VIEW CONTAINER -->
+            <div id="admin-container" class="max-w-5xl mx-auto space-y-6">
+                
+                <!-- Tab 1: Add Student -->
+                <div id="tab-add-student" class="admin-tab space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Naya Student Add Karein</h3>
+                                <p class="text-xs text-slate-500">Student ki tafseelat darj karein taake portal aur ID generate ho sake.</p>
                             </div>
                         </div>
 
-                        <!-- Select Course -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Course *</label>
-                            <select id="input-course" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition font-medium text-emerald-900">
-                                <option>Nazrah Quran Pak</option>
-                                <option>Madani Qaida</option>
-                                <option>Hifz-e-Quran</option>
-                                <option>Tajweed & Qirat Masterclass</option>
-                                <option>Dars-e-Nizami Core Studies</option>
-                            </select>
-                        </div>
+                        <form onsubmit="handleSaveStudent(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student Name *</label>
+                                    <input type="text" id="input-name" placeholder="e.g. Muhammad" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Father's Name *</label>
+                                    <input type="text" id="input-father" placeholder="e.g. Ali" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID (Auto / Custom)</label>
+                                    <input type="text" id="input-id" value="ROA-2026-0001" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-semibold text-blue-700 uppercase">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Course *</label>
+                                    <select id="input-course" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-medium">
+                                        <option>Nazrah Quran Pak</option>
+                                        <option>Madani Qaida</option>
+                                        <option>Hifz-e-Quran</option>
+                                        <option>Tajweed & Qirat Masterclass</option>
+                                        <option>Dars-e-Nizami Core Studies</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Age *</label>
+                                    <input type="number" id="input-age" placeholder="e.g. 8" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Parent Mobile / WhatsApp</label>
+                                    <input type="text" id="input-mobile" placeholder="+61431027336" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                </div>
+                            </div>
+                            <div class="flex justify-end pt-4 border-t border-slate-100">
+                                <button type="submit" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm transition shadow-lg shadow-emerald-600/20">
+                                    <i class="fa-solid fa-floppy-disk mr-2"></i> Save Student Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-                        <!-- Age -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Age *</label>
-                            <input type="number" id="input-age" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
-                        </div>
-
-                        <!-- Parent Mobile -->
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Parent Mobile / WhatsApp</label>
-                            <input type="text" id="input-mobile" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                <!-- Tab 2: Students Directory -->
+                <div id="tab-directory" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Students Directory</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-200 text-slate-600">
+                                        <th class="p-3">Student ID</th>
+                                        <th class="p-3">Name</th>
+                                        <th class="p-3">Father's Name</th>
+                                        <th class="p-3">Course</th>
+                                        <th class="p-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="directory-table-body">
+                                    <tr class="border-b border-slate-100">
+                                        <td class="p-3 font-semibold text-blue-600" id="dir-id">ROA-2026-0001</td>
+                                        <td class="p-3" id="dir-name">Muhammad</td>
+                                        <td class="p-3" id="dir-father">Ali</td>
+                                        <td class="p-3" id="dir-course">Nazrah Quran Pak</td>
+                                        <td class="p-3"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-medium">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex items-center justify-end space-x-4 pt-4 border-t border-slate-100">
-                        <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium transition shadow-lg shadow-emerald-700/25">
-                            Save & Update Record
-                        </button>
+                <!-- Tab 3: Sabaq & Attendance -->
+                <div id="tab-sabaq" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Daily Sabaq & Attendance Tracker</h3>
+                        <p class="text-xs text-slate-500 mb-6">Rozana ka sabaq aur hazri yahan update karein.</p>
+                        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Attendance Status</label>
+                                    <select id="admin-att-status" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
+                                        <option>Present (Hazir)</option>
+                                        <option>Absent (Ghair Hazir)</option>
+                                        <option>Leave (Rukhsat)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Sabaq Lesson / Para</label>
+                                    <input type="text" id="admin-sabaq-text" value="Para 1 - Surah Al-Baqarah (Rukuh 1)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
+                                </div>
+                                <div class="flex items-end">
+                                    <button onclick="saveSabaqAttendance()" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition">Update Daily Record</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
+
+                <!-- Tab 4: Daily Ibadat -->
+                <div id="tab-ibadat" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Daily Ibadat & Namaz Tracker</h3>
+                        <p class="text-xs text-slate-500 mb-6">Student ki panj waqta namaz aur quran tilawat ka record.</p>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">FAJR</span><span class="text-emerald-600 font-bold">Adaa (With Jamaat)</span></div>
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">ZUHUR</span><span class="text-emerald-600 font-bold">Adaa</span></div>
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">ASR</span><span class="text-emerald-600 font-bold">Adaa</span></div>
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">MAGHRIB</span><span class="text-emerald-600 font-bold">Adaa</span></div>
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">ISHA</span><span class="text-emerald-600 font-bold">Adaa</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Exams -->
+                <div id="tab-exams" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Monthly Exams & Results</h3>
+                        <p class="text-xs text-slate-500 mb-4">Mahana imtihaan ke marks yahan darj karein.</p>
+                        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-emerald-900">Monthly Assessment - Tajweed & Nazrah</h4>
+                                <p class="text-xs text-emerald-700">Grade: A+ (95 Marks)</p>
+                            </div>
+                            <span class="bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg font-bold">Passed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 6: Fees -->
+                <div id="tab-fees" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Fees & Vouchers Management</h3>
+                        <p class="text-xs text-slate-500 mb-4">Mahana fees status aur vouchers ki tafseel.</p>
+                        <div class="p-4 bg-slate-50 border rounded-xl flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-slate-800">Fee Voucher #ROA-V-2026-09</h4>
+                                <p class="text-xs text-slate-500">Status: Paid Online / Verified</p>
+                            </div>
+                            <span class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg font-semibold">Paid</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 7: Zakat -->
+                <div id="tab-zakat" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Zakat Receipt Generator</h3>
+                        <p class="text-xs text-slate-500 mb-4">Zakat ya donations ke liye official receipt generate karein.</p>
+                        <button onclick="alert('Zakat receipt generated successfully!')" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl font-bold text-sm shadow">Generate Receipt</button>
+                    </div>
+                </div>
+
+                <!-- Tab 8: Library -->
+                <div id="tab-library" class="admin-tab hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Islamic Books Library</h3>
+                        <p class="text-xs text-slate-500 mb-4">Students ke liye Islamic books aur notes upload karein.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 border rounded-xl bg-slate-50 flex items-center justify-between">
+                                <div><h4 class="font-bold text-sm">Noorul Itqan (Tajweed Book)</h4><span class="text-xs text-slate-500">PDF Document</span></div>
+                                <i class="fa-solid fa-book text-amber-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
 
 
-        <!-- STUDENT LOGIN & DASHBOARD VIEW -->
-        <div id="student-view" class="hidden space-y-6">
-            
-            <!-- Login Box -->
-            <div id="student-login-box" class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center space-y-6">
-                <div class="w-16 h-16 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center text-2xl mx-auto font-bold">
-                    <i class="fa-solid fa-user-lock"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-900">Student Portal Login</h3>
-                    <p class="text-xs text-slate-500 mt-1">Apni Student ID (misal: ROA-2026-0001) darj karein</p>
-                </div>
-                <div class="space-y-4 text-left">
+            <!-- STUDENT / PARENT VIEW CONTAINER -->
+            <div id="student-container" class="max-w-4xl mx-auto space-y-6 hidden">
+                
+                <!-- Login Screen -->
+                <div id="student-login-box" class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center space-y-6 mt-10">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mx-auto font-bold shadow-inner">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID</label>
-                        <input type="text" id="login-input-id" placeholder="ROA-2026-0001" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none uppercase font-semibold text-emerald-800">
+                        <h3 class="text-xl font-bold text-slate-900">Student Portal Login</h3>
+                        <p class="text-xs text-slate-500 mt-1">Apni Student ID (misal: ROA-2026-0001) darj karein</p>
                     </div>
-                    <button onclick="handleStudentLogin()" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-bold transition shadow-lg shadow-emerald-700/25">
-                        Portal Khulein
-                    </button>
-                </div>
-            </div>
-
-            <!-- Dashboard Details -->
-            <div id="student-dashboard" class="hidden space-y-6">
-                <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl shadow-md p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 text-3xl font-bold">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
+                    <div class="space-y-4 text-left">
                         <div>
-                            <span class="bg-emerald-700 text-emerald-100 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider" id="display-id"></span>
-                            <h2 class="text-2xl font-bold mt-2" id="display-name"></h2>
-                            <p class="text-emerald-200 text-sm">Father's Name: <span id="display-father" class="font-medium"></span></p>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID</label>
+                            <input type="text" id="login-input-id" placeholder="ROA-2026-0001" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-semibold text-blue-700 uppercase">
                         </div>
-                    </div>
-                    <div class="flex flex-col items-end gap-3">
-                        <div class="bg-white/10 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 text-center sm:text-right">
-                            <span class="text-xs text-emerald-300 block uppercase tracking-wider font-semibold">Enrolled Course</span>
-                            <span class="text-lg font-bold text-white" id="display-course"></span>
-                        </div>
-                        <button onclick="logoutStudent()" class="text-xs text-emerald-200 hover:text-white underline font-medium">
-                            <i class="fa-solid fa-right-from-bracket mr-1"> Logout</i>
+                        <button onclick="handleStudentLogin()" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition shadow-lg shadow-blue-600/20">
+                            Portal Khulein
                         </button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center space-x-3 text-emerald-700 mb-2">
-                            <i class="fa-solid fa-child text-xl"></i>
-                            <h3 class="font-bold text-slate-700">Student Age</h3>
+                <!-- Student Dashboard -->
+                <div id="student-dashboard" class="hidden space-y-6">
+                    <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl shadow-md p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 text-3xl font-bold text-amber-400">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <span class="bg-amber-500 text-slate-950 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider" id="disp-id">ROA-2026-0001</span>
+                                <h2 class="text-2xl font-bold mt-2" id="disp-name">Muhammad</h2>
+                                <p class="text-slate-300 text-sm">Father's Name: <span id="disp-father" class="font-medium">Ali</span></p>
+                            </div>
                         </div>
-                        <p class="text-2xl font-bold text-slate-900" id="display-age"></p>
+                        <div class="flex flex-col items-end gap-3">
+                            <div class="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-xl border border-white/10 text-right">
+                                <span class="text-[10px] text-amber-400 block uppercase tracking-wider font-semibold">Enrolled Course</span>
+                                <span class="text-sm font-bold text-white" id="disp-course">Nazrah Quran Pak</span>
+                            </div>
+                            <button onclick="logoutStudent()" class="text-xs text-red-300 hover:text-white underline font-medium">
+                                <i class="fa-solid fa-right-from-bracket mr-1"> Logout Portal</i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center space-x-3 text-emerald-700 mb-2">
-                            <i class="fa-solid fa-phone text-xl"></i>
-                            <h3 class="font-bold text-slate-700">Contact / WhatsApp</h3>
+
+                    <!-- Dashboard Stats Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center space-x-3 text-blue-600 mb-2">
+                                <i class="fa-solid fa-calendar-check text-xl"></i>
+                                <h4 class="font-bold text-slate-700 text-sm">Attendance Status</h4>
+                            </div>
+                            <p class="text-xl font-bold text-emerald-600" id="disp-attendance">Present (Hazir)</p>
                         </div>
-                        <p class="text-lg font-bold text-slate-900" id="display-mobile"></p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center space-x-3 text-emerald-700 mb-2">
-                            <i class="fa-solid fa-circle-check text-xl"></i>
-                            <h3 class="font-bold text-slate-700">Portal Status</h3>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center space-x-3 text-blue-600 mb-2">
+                                <i class="fa-solid fa-book-open text-xl"></i>
+                                <h4 class="font-bold text-slate-700 text-sm">Today's Sabaq</h4>
+                            </div>
+                            <p class="text-sm font-bold text-slate-900" id="disp-sabaq">Para 1 - Surah Al-Baqarah</p>
                         </div>
-                        <p class="text-lg font-bold text-emerald-600">Active & Verified</p>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center space-x-3 text-blue-600 mb-2">
+                                <i class="fa-solid fa-award text-xl"></i>
+                                <h4 class="font-bold text-slate-700 text-sm">Exam Grade</h4>
+                            </div>
+                            <p class="text-xl font-bold text-blue-600">A+ (95%)</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
+        </main>
+    </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        &copy; 2026 Raza Online Islamic Academy. All rights reserved.
-    </footer>
-
-    <!-- Script -->
+    <!-- Script Logic -->
     <script>
-        // Default Data agar pehle kuch na ho
         let defaultStudent = {
             name: "Muhammad",
             father: "Ali",
             id: "ROA-2026-0001",
             course: "Nazrah Quran Pak",
-            age: "7",
-            mobile: "+61 431 027 336"
+            age: "8",
+            mobile: "+61431027336",
+            attendance: "Present (Hazir)",
+            sabaq: "Para 1 - Surah Al-Baqarah (Rukuh 1)"
         };
 
-        // Load data from localStorage or use default
         function getStudentData() {
-            let saved = localStorage.getItem('raza_student_profile');
-            if (saved) {
-                return JSON.parse(saved);
-            }
-            return defaultStudent;
+            let saved = localStorage.getItem('raza_academy_student');
+            return saved ? JSON.parse(saved) : defaultStudent;
         }
 
         let studentData = getStudentData();
         let isStudentView = false;
 
-        // Populate admin form fields on load
         window.onload = function() {
+            populateAdminForm();
+        };
+
+        function populateAdminForm() {
             document.getElementById('input-name').value = studentData.name;
             document.getElementById('input-father').value = studentData.father;
             document.getElementById('input-id').value = studentData.id;
             document.getElementById('input-course').value = studentData.course;
             document.getElementById('input-age').value = studentData.age;
             document.getElementById('input-mobile').value = studentData.mobile;
-        };
+            
+            // Directory update
+            document.getElementById('dir-id').innerText = studentData.id;
+            document.getElementById('dir-name').innerText = studentData.name;
+            document.getElementById('dir-father').innerText = studentData.father;
+            document.getElementById('dir-course').innerText = studentData.course;
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['add-student', 'directory', 'sabaq', 'ibadat', 'exams', 'fees', 'zakat', 'library'];
+            tabs.forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('nav-' + t).classList.remove('bg-blue-600', 'text-white');
+                document.getElementById('nav-' + t).classList.add('hover:bg-slate-800');
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('nav-' + tabId).classList.add('bg-blue-600', 'text-white');
+            document.getElementById('nav-' + tabId).classList.remove('hover:bg-slate-800');
+        }
 
         function handleSaveStudent(e) {
             e.preventDefault();
-            
             studentData.name = document.getElementById('input-name').value.trim();
             studentData.father = document.getElementById('input-father').value.trim();
             studentData.id = document.getElementById('input-id').value.trim().toUpperCase();
@@ -234,62 +404,78 @@
             studentData.age = document.getElementById('input-age').value.trim();
             studentData.mobile = document.getElementById('input-mobile').value.trim();
 
-            // Save to LocalStorage permanently
-            localStorage.setItem('raza_student_profile', JSON.stringify(studentData));
-            alert("Student Profile Updated Successfully! Ab aap Student Portal par apni ID se login kar sakte hain.");
+            localStorage.setItem('raza_academy_student', JSON.stringify(studentData));
+            populateAdminForm();
+            alert("Student profile successfully saved and synced with portal!");
         }
 
-        function handleStudentLogin() {
-            let inputVal = document.getElementById('login-input-id').value.trim().toUpperCase();
-            let currentStudent = getStudentData();
-
-            if (inputVal === currentStudent.id.toUpperCase() || inputVal === currentStudent.name.toUpperCase()) {
-                document.getElementById('student-login-box').classList.add('hidden');
-                document.getElementById('student-dashboard').classList.remove('hidden');
-                
-                // Set Display Values
-                document.getElementById('display-name').innerText = currentStudent.name;
-                document.getElementById('display-father').innerText = currentStudent.father;
-                document.getElementById('display-id').innerText = currentStudent.id;
-                document.getElementById('display-course').innerText = currentStudent.course;
-                document.getElementById('display-age').innerText = currentStudent.age + " Years";
-                document.getElementById('display-mobile').innerText = currentStudent.mobile;
-            } else {
-                alert("Ghalat Student ID! Sahi ID likhein jo Admin panel mein mojood hai (misal: ROA-2026-0001).");
-            }
+        function saveSabaqAttendance() {
+            studentData.attendance = document.getElementById('admin-att-status').value;
+            studentData.sabaq = document.getElementById('admin-sabaq-text').value;
+            localStorage.setItem('raza_academy_student', JSON.stringify(studentData));
+            alert("Daily Sabaq & Attendance updated successfully!");
         }
 
-        function logoutStudent() {
-            document.getElementById('login-input-id').value = "";
-            document.getElementById('student-dashboard').classList.add('hidden');
-            document.getElementById('student-login-box').classList.remove('hidden');
-        }
-
-        function toggleView() {
+        function toggleMainView() {
             isStudentView = !isStudentView;
-            const adminView = document.getElementById('admin-view');
-            const studentView = document.getElementById('student-view');
+            const adminContainer = document.getElementById('admin-container');
+            const studentContainer = document.getElementById('student-container');
             const switchBtn = document.getElementById('view-switch-btn');
-            const subtitle = document.getElementById('portal-subtitle');
+            const sidebar = document.getElementById('sidebar');
 
             if (isStudentView) {
-                adminView.classList.add('hidden');
-                studentView.classList.remove('hidden');
+                adminContainer.classList.add('hidden');
+                studentContainer.classList.remove('hidden');
+                sidebar.classList.add('md:hidden');
                 switchBtn.innerText = "Switch to Admin Panel";
-                switchBtn.className = "bg-slate-800 hover:bg-slate-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow";
-                subtitle.innerText = "Student Portal Dashboard";
-
-                // Reset login box state
+                switchBtn.className = "bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow";
+                
                 document.getElementById('student-dashboard').classList.add('hidden');
                 document.getElementById('student-login-box').classList.remove('hidden');
                 document.getElementById('login-input-id').value = "";
             } else {
-                studentView.classList.add('hidden');
-                adminView.classList.remove('hidden');
-                switchBtn.innerText = "Switch to Student Portal";
-                switchBtn.className = "bg-emerald-700 hover:bg-emerald-600 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow";
-                subtitle.innerText = "Admin Management Portal";
+                studentContainer.classList.add('hidden');
+                adminContainer.classList.remove('hidden');
+                sidebar.classList.remove('md:hidden');
+                switchBtn.innerText = "Switch to Student View";
+                switchBtn.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow";
             }
+        }
+
+        function handleStudentLogin() {
+            let inputId = document.getElementById('login-input-id').value.trim().toUpperCase();
+            let current = getStudentData();
+
+            if (inputId === current.id.toUpperCase() || inputId === current.name.toUpperCase()) {
+                document.getElementById('student-login-box').classList.add('hidden');
+                document.getElementById('student-dashboard').classList.remove('hidden');
+
+                document.getElementById('disp-id').innerText = current.id;
+                document.getElementById('disp-name').innerText = current.name;
+                document.getElementById('disp-father').innerText = current.father;
+                document.getElementById('disp-course').innerText = current.course;
+                document.getElementById('disp-attendance').innerText = current.attendance;
+                document.getElementById('disp-sabaq').innerText = current.sabaq;
+            } else {
+                alert("Ghalat Student ID! Sahi ID likhein (misal: " + current.id + ")");
+            }
+        }
+
+        function logoutStudent() {
+            document.getElementById('student-dashboard').classList.add('hidden');
+            document.getElementById('student-login-box').classList.remove('hidden');
+            document.getElementById('login-input-id').value = "";
+        }
+
+        function logoutAdmin() {
+            if(confirm("Kya aap portal se logout karna chahte hain?")) {
+                alert("Logged out successfully.");
+            }
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
         }
     </script>
 </body>
