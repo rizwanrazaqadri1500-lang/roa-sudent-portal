@@ -13,7 +13,7 @@
 <body class="h-full flex flex-col justify-between font-sans antialiased text-slate-800">
 
     <!-- Top Navigation Bar -->
-    <header class="bg-emerald-900 text-white shadow-md">
+    <header class="bg-emerald-900 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="bg-emerald-800 p-2 rounded-lg border border-emerald-700">
@@ -89,13 +89,13 @@
             </div>
 
             <!-- Quick Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-5">
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-book-quran"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Enrolled Courses</p>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Courses</p>
                         <h3 class="text-xl font-bold text-slate-800 mt-0.5">3 Active</h3>
                     </div>
                 </div>
@@ -111,57 +111,132 @@
                 </div>
 
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-certificate"></i>
+                    <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-file-pen"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Certificates</p>
-                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">1 Earned</h3>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Exams</p>
+                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">Next Mon</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Fee Status</p>
+                        <h3 class="text-xl font-bold text-emerald-600 mt-0.5">Paid</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Content Tabs Grid -->
+            <!-- Main Sections Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Courses Section -->
-                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                        <i class="fa-solid fa-list-check text-emerald-700 mr-2"></i> Your Current Courses
-                    </h3>
-                    <div class="space-y-3">
-                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                            <div>
-                                <h4 class="font-semibold text-sm text-slate-800">Dars-e-Nizami Core Studies</h4>
-                                <p class="text-xs text-slate-500 mt-0.5">Instructor: Allama Qadri</p>
+                
+                <!-- Left 2 Columns: Courses & Exams -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Courses Section -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                            <i class="fa-solid fa-list-check text-emerald-700 mr-2"></i> Your Current Courses
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-slate-800">Dars-e-Nizami Core Studies</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">Instructor: Allama Qadri</p>
+                                </div>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
                             </div>
-                            <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-slate-800">Tajweed & Qirat Masterclass</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">Instructor: Qari Raza</p>
+                            </div>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
+                            </div>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                            <div>
-                                <h4 class="font-semibold text-sm text-slate-800">Tajweed & Qirat Masterclass</h4>
-                                <p class="text-xs text-slate-500 mt-0.5">Instructor: Qari Raza</p>
+                    </div>
+
+                    <!-- Exams & Quizzes Section -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                            <i class="fa-solid fa-clipboard-question text-emerald-700 mr-2"></i> Upcoming Exams & Assessments
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-slate-800">Fiqh & Aqeedah Monthly Quiz</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">Date: Monday, 15 Sept 2026 | Time: 04:00 PM</p>
+                                </div>
+                                <span class="text-xs bg-amber-100 text-amber-800 font-medium px-3 py-1.5 rounded-xl">Scheduled</span>
                             </div>
-                            <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-slate-800">Arabic Grammar Midterm</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">Date: Next Month | Syllabus: Lessons 1 to 5</p>
+                                </div>
+                                <span class="text-xs bg-slate-200 text-slate-700 font-medium px-3 py-1.5 rounded-xl">Upcoming</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Announcements Section -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                        <i class="fa-solid fa-bullhorn text-emerald-700 mr-2"></i> Announcements
-                    </h3>
-                    <div class="space-y-3 text-xs">
-                        <div class="p-3 bg-emerald-50/60 border border-emerald-100 rounded-xl">
-                            <span class="font-bold text-emerald-900 block mb-1">Monthly Exam Schedule</span>
-                            <p class="text-slate-600">Upcoming exams will commence from next Monday. Prepare well.</p>
+                <!-- Right Column: Daily Ibadat Tracker & Announcements -->
+                <div class="space-y-6">
+                    <!-- Daily Ibadat Tracker -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                            <i class="fa-solid fa-mosque text-emerald-700 mr-2"></i> Daily Ibadat Tracker
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-4">Mark your daily spiritual routine:</p>
+                        <div class="space-y-2.5 text-sm">
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
+                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Fajr Prayer</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
+                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Zuhur Prayer</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
+                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Asr Prayer</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
+                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Maghrib Prayer</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
+                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Isha Prayer</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-100 cursor-pointer hover:bg-emerald-100/50 transition mt-2">
+                                <span class="font-bold text-emerald-900 text-xs"><i class="fa-solid fa-book-open text-emerald-700 mr-2"></i> Daily Tilawat-e-Quran</span>
+                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
                         </div>
-                        <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
-                            <span class="font-bold text-slate-800 block mb-1">Live Class Link Updated</span>
-                            <p class="text-slate-600">Check your student group for the new Zoom timings.</p>
+                    </div>
+
+                    <!-- Announcements Section -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                            <i class="fa-solid fa-bullhorn text-emerald-700 mr-2"></i> Announcements
+                        </h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 bg-emerald-50/60 border border-emerald-100 rounded-xl">
+                                <span class="font-bold text-emerald-900 block mb-1">Monthly Exam Schedule</span>
+                                <p class="text-slate-600">Upcoming exams will commence from next Monday. Prepare well.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                                <span class="font-bold text-slate-800 block mb-1">Live Class Link Updated</span>
+                                <p class="text-slate-600">Check your student group for the new Zoom timings.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
