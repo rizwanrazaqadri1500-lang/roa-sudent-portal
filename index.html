@@ -43,17 +43,17 @@
                     <i class="fa-solid fa-user-lock text-2xl"></i>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-900">Student Portal Login</h2>
-                <p class="text-sm text-slate-500 mt-1">Enter your credentials to access your portal</p>
+                <p class="text-sm text-slate-500 mt-1">Enter your Student ID to access your portal</p>
             </div>
 
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Student Email</label>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Student ID</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                            <i class="fa-solid fa-envelope"></i>
+                            <i class="fa-solid fa-id-card"></i>
                         </span>
-                        <input type="email" id="email" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition" placeholder="student@razaacademy.com">
+                        <input type="text" id="student-id" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition uppercase" placeholder="ROA-2026-0001">
                     </div>
                 </div>
 
@@ -175,29 +175,29 @@
     <!-- App Logic Script -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            const savedUser = localStorage.getItem('roa_student');
-            if(savedUser) {
-                showDashboard(savedUser);
+            const savedStudent = localStorage.getItem('roa_student_id');
+            if(savedStudent) {
+                showDashboard(savedStudent);
             }
         });
 
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
+            const studentId = document.getElementById('student-id').value.trim();
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('login-error');
             const btn = document.getElementById('login-submit-btn');
 
             btn.disabled = true;
-            btn.innerText = "Signing in...";
+            btn.innerText = "Verifying ID...";
             errorDiv.classList.add('hidden');
 
             setTimeout(() => {
-                if(email && password.length >= 4) {
-                    localStorage.setItem('roa_student', email);
-                    showDashboard(email);
+                if(studentId && password.length >= 4) {
+                    localStorage.setItem('roa_student_id', studentId);
+                    showDashboard(studentId);
                 } else {
-                    errorDiv.innerText = "Please enter valid credentials (password min 4 chars).";
+                    errorDiv.innerText = "Please enter a valid Student ID and password (min 4 chars).";
                     errorDiv.classList.remove('hidden');
                     btn.disabled = false;
                     btn.innerText = "Sign In to Portal";
@@ -205,18 +205,18 @@
             }, 600);
         }
 
-        function showDashboard(email) {
+        function showDashboard(studentId) {
             document.getElementById('login-view').classList.add('hidden');
             document.getElementById('dashboard-view').classList.remove('hidden');
             document.getElementById('logout-btn').classList.remove('hidden');
             const badge = document.getElementById('user-badge');
-            badge.innerText = email;
+            badge.innerText = `ID: ${studentId}`;
             badge.classList.remove('hidden');
-            document.getElementById('welcome-name').innerText = `Welcome Back, ${email.split('@')[0]}`;
+            document.getElementById('welcome-name').innerText = `Welcome, Student (${studentId})`;
         }
 
         function logout() {
-            localStorage.removeItem('roa_student');
+            localStorage.removeItem('roa_student_id');
             location.reload();
         }
 
