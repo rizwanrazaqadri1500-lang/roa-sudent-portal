@@ -12,43 +12,43 @@
     <!-- SIDEBAR (Admin Navigation) -->
     <aside id="sidebar" class="w-64 bg-slate-900 text-slate-300 flex flex-col justify-between hidden md:flex z-20 shadow-xl">
         <div>
-            <div class="p-5 bg-amber-500 text-slate-950 flex items-center space-x-3">
-                <div class="font-black text-xl tracking-wider bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg">ROA</div>
+            <div class="p-4 bg-amber-500 text-slate-950 flex items-center space-x-3">
+                <div class="font-black text-lg tracking-wider bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg">ROA</div>
                 <div>
-                    <h1 class="font-bold text-sm leading-tight">Raza Online Islamic</h1>
-                    <span class="text-[11px] font-semibold text-slate-900 block">Management Portal</span>
+                    <h1 class="font-bold text-xs leading-tight">Raza Online Islamic</h1>
+                    <span class="text-[10px] font-semibold text-slate-900 block">Academy Management Portal</span>
                 </div>
             </div>
-            <nav class="p-4 space-y-1 text-sm font-medium">
-                <button onclick="switchTab('add-student')" id="nav-add-student" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-blue-600 text-white transition shadow-sm">
-                    <i class="fa-solid fa-user-plus w-5"></i><span>Add Student</span>
+            <nav class="p-3 space-y-1 text-xs font-medium">
+                <button onclick="switchTab('add-student')" id="nav-add-student" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl bg-blue-600 text-white transition shadow-sm">
+                    <i class="fa-solid fa-user-plus w-4"></i><span>Add Student</span>
                 </button>
-                <button onclick="switchTab('directory')" id="nav-directory" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-users w-5"></i><span>Students Directory</span>
+                <button onclick="switchTab('directory')" id="nav-directory" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-users w-4"></i><span>Students Directory</span>
                 </button>
-                <button onclick="switchTab('sabaq')" id="nav-sabaq" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-book-open w-5"></i><span>Daily Sabaq & Attendance</span>
+                <button onclick="switchTab('sabaq')" id="nav-sabaq" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i><span>Daily Sabaq & Attendance</span>
                 </button>
-                <button onclick="switchTab('ibadat')" id="nav-ibadat" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-mosque w-5"></i><span>Daily Ibadat & Namaz</span>
+                <button onclick="switchTab('ibadat')" id="nav-ibadat" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-mosque w-4"></i><span>Daily Ibadat & Namaz</span>
                 </button>
-                <button onclick="switchTab('exams')" id="nav-exams" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-award w-5"></i><span>Monthly Exams & Results</span>
+                <button onclick="switchTab('exams')" id="nav-exams" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-award w-4"></i><span>Monthly Exams & Results</span>
                 </button>
-                <button onclick="switchTab('fees')" id="nav-fees" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Fees & Vouchers</span>
+                <button onclick="switchTab('fees')" id="nav-fees" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-file-invoice-dollar w-4"></i><span>Fees & Vouchers</span>
                 </button>
-                <button onclick="switchTab('zakat')" id="nav-zakat" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-hand-holding-dollar w-5"></i><span>Zakat Receipt Generator</span>
+                <button onclick="switchTab('zakat')" id="nav-zakat" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-hand-holding-dollar w-4"></i><span>Zakat Receipt Generator</span>
                 </button>
-                <button onclick="switchTab('library')" id="nav-library" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-book-bookmark w-5"></i><span>Islamic Books Library</span>
+                <button onclick="switchTab('library')" id="nav-library" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i><span>Islamic Books Library</span>
                 </button>
             </nav>
         </div>
-        <div class="p-4 border-t border-slate-800">
-            <button onclick="logoutAdmin()" class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 transition text-sm font-medium">
-                <i class="fa-solid fa-right-from-bracket w-5"></i><span>Logout Portal</span>
+        <div class="p-3 border-t border-slate-800">
+            <button onclick="logoutAdmin()" class="w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-red-400 hover:bg-red-500/10 transition text-xs font-medium">
+                <i class="fa-solid fa-right-from-bracket w-4"></i><span>Logout Portal</span>
             </button>
         </div>
     </aside>
@@ -63,8 +63,8 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <div>
-                    <h2 class="font-bold text-lg leading-tight">Raza Online Islamic Academy</h2>
-                    <span id="top-subtitle" class="text-xs text-slate-400">Admin & Student Management Portal</span>
+                    <h2 class="font-bold text-base leading-tight">Raza Online Islamic Academy</h2>
+                    <span id="top-subtitle" class="text-[11px] text-slate-400">Admin & Student Management Portal</span>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -72,7 +72,7 @@
                     <i class="fa-solid fa-circle text-[8px] mr-1.5 animate-pulse"></i> System Active
                 </span>
                 <button onclick="toggleMainView()" id="view-switch-btn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow">
-                    Switch to Student View
+                    Switch to Parent View
                 </button>
             </div>
         </header>
@@ -87,7 +87,7 @@
                 <div id="tab-add-student" class="admin-tab space-y-6">
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
                         <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg">
                                 <i class="fa-solid fa-user-plus"></i>
                             </div>
                             <div>
@@ -107,31 +107,37 @@
                                     <input type="text" id="input-father" placeholder="e.g. Ali" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID (Auto / Custom)</label>
-                                    <input type="text" id="input-id" value="ROA-2026-0001" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-semibold text-blue-700 uppercase">
-                                </div>
-                                <div>
                                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Course *</label>
                                     <select id="input-course" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-medium">
+                                        <option>Hifz-ul-Quran</option>
                                         <option>Nazrah Quran Pak</option>
                                         <option>Madani Qaida</option>
-                                        <option>Hifz-e-Quran</option>
                                         <option>Tajweed & Qirat Masterclass</option>
                                         <option>Dars-e-Nizami Core Studies</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Age *</label>
-                                    <input type="number" id="input-age" placeholder="e.g. 8" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                    <input type="number" id="input-age" placeholder="e.g. 9" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Parent Mobile / WhatsApp</label>
-                                    <input type="text" id="input-mobile" placeholder="+61431027336" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                    <input type="text" id="input-mobile" placeholder="+61400123456 / +92..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Country & Currency *</label>
+                                    <select id="input-currency" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-medium">
+                                        <option>AU Australia (AUD)</option>
+                                        <option>PK Pakistan (PKR)</option>
+                                        <option>US United States (USD)</option>
+                                        <option>GB United Kingdom (GBP)</option>
+                                        <option>CA Canada (CAD)</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="flex justify-end pt-4 border-t border-slate-100">
-                                <button type="submit" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm transition shadow-lg shadow-emerald-600/20">
-                                    <i class="fa-solid fa-floppy-disk mr-2"></i> Save Student Profile
+                                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-emerald-600/20 flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-user-plus"></i><span>+ Save Student Profile</span>
                                 </button>
                             </div>
                         </form>
@@ -146,19 +152,19 @@
                             <table class="w-full text-left border-collapse text-sm">
                                 <thead>
                                     <tr class="bg-slate-50 border-b border-slate-200 text-slate-600">
-                                        <th class="p-3">Student ID</th>
-                                        <th class="p-3">Name</th>
+                                        <th class="p-3">Student Name</th>
                                         <th class="p-3">Father's Name</th>
                                         <th class="p-3">Course</th>
+                                        <th class="p-3">Age</th>
                                         <th class="p-3">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="directory-table-body">
                                     <tr class="border-b border-slate-100">
-                                        <td class="p-3 font-semibold text-blue-600" id="dir-id">ROA-2026-0001</td>
-                                        <td class="p-3" id="dir-name">Muhammad</td>
+                                        <td class="p-3 font-semibold text-blue-600" id="dir-name">Muhammad</td>
                                         <td class="p-3" id="dir-father">Ali</td>
-                                        <td class="p-3" id="dir-course">Nazrah Quran Pak</td>
+                                        <td class="p-3" id="dir-course">Hifz-ul-Quran</td>
+                                        <td class="p-3" id="dir-age">9</td>
                                         <td class="p-3"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-medium">Active</span></td>
                                     </tr>
                                 </tbody>
@@ -184,7 +190,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold text-slate-600 mb-1">Sabaq Lesson / Para</label>
-                                    <input type="text" id="admin-sabaq-text" value="Para 1 - Surah Al-Baqarah (Rukuh 1)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
+                                    <input type="text" id="admin-sabaq-text" value="Para 1 - Surah Al-Baqarah" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
                                 </div>
                                 <div class="flex items-end">
                                     <button onclick="saveSabaqAttendance()" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition">Update Daily Record</button>
@@ -200,7 +206,7 @@
                         <h3 class="text-xl font-bold text-slate-900 mb-2">Daily Ibadat & Namaz Tracker</h3>
                         <p class="text-xs text-slate-500 mb-6">Student ki panj waqta namaz aur quran tilawat ka record.</p>
                         <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
-                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">FAJR</span><span class="text-emerald-600 font-bold">Adaa (With Jamaat)</span></div>
+                            <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">FAJR</span><span class="text-emerald-600 font-bold">Adaa</span></div>
                             <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">ZUHUR</span><span class="text-emerald-600 font-bold">Adaa</span></div>
                             <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">ASR</span><span class="text-emerald-600 font-bold">Adaa</span></div>
                             <div class="p-4 bg-slate-50 rounded-xl border text-center"><span class="block text-xs font-bold text-slate-500">MAGHRIB</span><span class="text-emerald-600 font-bold">Adaa</span></div>
@@ -216,7 +222,7 @@
                         <p class="text-xs text-slate-500 mb-4">Mahana imtihaan ke marks yahan darj karein.</p>
                         <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex justify-between items-center">
                             <div>
-                                <h4 class="font-bold text-emerald-900">Monthly Assessment - Tajweed & Nazrah</h4>
+                                <h4 class="font-bold text-emerald-900">Monthly Assessment</h4>
                                 <p class="text-xs text-emerald-700">Grade: A+ (95 Marks)</p>
                             </div>
                             <span class="bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg font-bold">Passed</span>
@@ -231,7 +237,7 @@
                         <p class="text-xs text-slate-500 mb-4">Mahana fees status aur vouchers ki tafseel.</p>
                         <div class="p-4 bg-slate-50 border rounded-xl flex justify-between items-center">
                             <div>
-                                <h4 class="font-bold text-slate-800">Fee Voucher #ROA-V-2026-09</h4>
+                                <h4 class="font-bold text-slate-800">Fee Voucher Status</h4>
                                 <p class="text-xs text-slate-500">Status: Paid Online / Verified</p>
                             </div>
                             <span class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg font-semibold">Paid</span>
@@ -265,22 +271,22 @@
             </div>
 
 
-            <!-- STUDENT / PARENT VIEW CONTAINER -->
+            <!-- PARENT / STUDENT VIEW CONTAINER -->
             <div id="student-container" class="max-w-4xl mx-auto space-y-6 hidden">
                 
-                <!-- Login Screen -->
+                <!-- Login Box -->
                 <div id="student-login-box" class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center space-y-6 mt-10">
                     <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mx-auto font-bold shadow-inner">
                         <i class="fa-solid fa-user-lock"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-slate-900">Student Portal Login</h3>
-                        <p class="text-xs text-slate-500 mt-1">Apni Student ID (misal: ROA-2026-0001) darj karein</p>
+                        <h3 class="text-xl font-bold text-slate-900">Parent / Student Portal Login</h3>
+                        <p class="text-xs text-slate-500 mt-1">Apna Student Name darj karein</p>
                     </div>
                     <div class="space-y-4 text-left">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID</label>
-                            <input type="text" id="login-input-id" placeholder="ROA-2026-0001" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-semibold text-blue-700 uppercase">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student Name</label>
+                            <input type="text" id="login-input-id" placeholder="e.g. Muhammad" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white text-sm outline-none font-semibold text-blue-700">
                         </div>
                         <button onclick="handleStudentLogin()" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition shadow-lg shadow-blue-600/20">
                             Portal Khulein
@@ -288,7 +294,7 @@
                     </div>
                 </div>
 
-                <!-- Student Dashboard -->
+                <!-- Dashboard -->
                 <div id="student-dashboard" class="hidden space-y-6">
                     <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl shadow-md p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div class="flex items-center space-x-4">
@@ -296,7 +302,7 @@
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                             <div>
-                                <span class="bg-amber-500 text-slate-950 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider" id="disp-id">ROA-2026-0001</span>
+                                <span class="bg-amber-500 text-slate-950 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider" id="disp-currency">AUSTRALIA (AUD)</span>
                                 <h2 class="text-2xl font-bold mt-2" id="disp-name">Muhammad</h2>
                                 <p class="text-slate-300 text-sm">Father's Name: <span id="disp-father" class="font-medium">Ali</span></p>
                             </div>
@@ -304,7 +310,7 @@
                         <div class="flex flex-col items-end gap-3">
                             <div class="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-xl border border-white/10 text-right">
                                 <span class="text-[10px] text-amber-400 block uppercase tracking-wider font-semibold">Enrolled Course</span>
-                                <span class="text-sm font-bold text-white" id="disp-course">Nazrah Quran Pak</span>
+                                <span class="text-sm font-bold text-white" id="disp-course">Hifz-ul-Quran</span>
                             </div>
                             <button onclick="logoutStudent()" class="text-xs text-red-300 hover:text-white underline font-medium">
                                 <i class="fa-solid fa-right-from-bracket mr-1"> Logout Portal</i>
@@ -312,7 +318,6 @@
                         </div>
                     </div>
 
-                    <!-- Dashboard Stats Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                             <div class="flex items-center space-x-3 text-blue-600 mb-2">
@@ -348,16 +353,16 @@
         let defaultStudent = {
             name: "Muhammad",
             father: "Ali",
-            id: "ROA-2026-0001",
-            course: "Nazrah Quran Pak",
-            age: "8",
-            mobile: "+61431027336",
+            course: "Hifz-ul-Quran",
+            age: "9",
+            mobile: "+61400123456",
+            currency: "AU Australia (AUD)",
             attendance: "Present (Hazir)",
-            sabaq: "Para 1 - Surah Al-Baqarah (Rukuh 1)"
+            sabaq: "Para 1 - Surah Al-Baqarah"
         };
 
         function getStudentData() {
-            let saved = localStorage.getItem('raza_academy_student');
+            let saved = localStorage.getItem('raza_academy_unified_portal');
             return saved ? JSON.parse(saved) : defaultStudent;
         }
 
@@ -371,16 +376,16 @@
         function populateAdminForm() {
             document.getElementById('input-name').value = studentData.name;
             document.getElementById('input-father').value = studentData.father;
-            document.getElementById('input-id').value = studentData.id;
             document.getElementById('input-course').value = studentData.course;
             document.getElementById('input-age').value = studentData.age;
             document.getElementById('input-mobile').value = studentData.mobile;
+            document.getElementById('input-currency').value = studentData.currency;
             
             // Directory update
-            document.getElementById('dir-id').innerText = studentData.id;
             document.getElementById('dir-name').innerText = studentData.name;
             document.getElementById('dir-father').innerText = studentData.father;
             document.getElementById('dir-course').innerText = studentData.course;
+            document.getElementById('dir-age').innerText = studentData.age;
         }
 
         function switchTab(tabId) {
@@ -399,20 +404,20 @@
             e.preventDefault();
             studentData.name = document.getElementById('input-name').value.trim();
             studentData.father = document.getElementById('input-father').value.trim();
-            studentData.id = document.getElementById('input-id').value.trim().toUpperCase();
             studentData.course = document.getElementById('input-course').value;
             studentData.age = document.getElementById('input-age').value.trim();
             studentData.mobile = document.getElementById('input-mobile').value.trim();
+            studentData.currency = document.getElementById('input-currency').value;
 
-            localStorage.setItem('raza_academy_student', JSON.stringify(studentData));
+            localStorage.setItem('raza_academy_unified_portal', JSON.stringify(studentData));
             populateAdminForm();
-            alert("Student profile successfully saved and synced with portal!");
+            alert("Student profile successfully saved and synced across portal!");
         }
 
         function saveSabaqAttendance() {
             studentData.attendance = document.getElementById('admin-att-status').value;
             studentData.sabaq = document.getElementById('admin-sabaq-text').value;
-            localStorage.setItem('raza_academy_student', JSON.stringify(studentData));
+            localStorage.setItem('raza_academy_unified_portal', JSON.stringify(studentData));
             alert("Daily Sabaq & Attendance updated successfully!");
         }
 
@@ -437,27 +442,27 @@
                 studentContainer.classList.add('hidden');
                 adminContainer.classList.remove('hidden');
                 sidebar.classList.remove('md:hidden');
-                switchBtn.innerText = "Switch to Student View";
+                switchBtn.innerText = "Switch to Parent View";
                 switchBtn.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow";
             }
         }
 
         function handleStudentLogin() {
-            let inputId = document.getElementById('login-input-id').value.trim().toUpperCase();
+            let inputName = document.getElementById('login-input-id').value.trim().toLowerCase();
             let current = getStudentData();
 
-            if (inputId === current.id.toUpperCase() || inputId === current.name.toUpperCase()) {
+            if (inputName === current.name.trim().toLowerCase()) {
                 document.getElementById('student-login-box').classList.add('hidden');
                 document.getElementById('student-dashboard').classList.remove('hidden');
 
-                document.getElementById('disp-id').innerText = current.id;
+                document.getElementById('disp-currency').innerText = current.currency;
                 document.getElementById('disp-name').innerText = current.name;
                 document.getElementById('disp-father').innerText = current.father;
                 document.getElementById('disp-course').innerText = current.course;
                 document.getElementById('disp-attendance').innerText = current.attendance;
                 document.getElementById('disp-sabaq').innerText = current.sabaq;
             } else {
-                alert("Ghalat Student ID! Sahi ID likhein (misal: " + current.id + ")");
+                alert("Student Name ghalat hai! Sahi Naam likhein (misal: " + current.name + ")");
             }
         }
 
