@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raza Online Islamic Academy - Student Portal</title>
+    <title>Raza Online Islamic Academy - Admin & Student Management</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#047857">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,231 +13,119 @@
 <body class="h-full flex flex-col justify-between font-sans antialiased text-slate-800">
 
     <!-- Top Navigation Bar -->
-    <header class="bg-emerald-900 text-white shadow-md sticky top-0 z-50">
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-emerald-800 p-2 rounded-lg border border-emerald-700">
-                    <i class="fa-solid fa-graduation-cap text-emerald-300 text-xl"></i>
+                <div class="bg-emerald-700 p-2 rounded-lg border border-emerald-600">
+                    <i class="fa-solid fa-shield-halved text-white text-xl"></i>
                 </div>
                 <div>
                     <h1 class="font-bold text-lg leading-tight tracking-wide">Raza Online Islamic Academy</h1>
-                    <span class="text-xs text-emerald-300 font-medium">Student Portal Dashboard</span>
+                    <span class="text-xs text-slate-400 font-medium">Admin & Student Management Portal</span>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <span id="user-badge" class="hidden text-sm bg-emerald-800 px-3 py-1 rounded-full border border-emerald-700"></span>
-                <button onclick="logout()" id="logout-btn" class="hidden text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-sm">
-                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                <span class="bg-emerald-900/80 text-emerald-300 text-xs px-3 py-1.5 rounded-full border border-emerald-700 font-medium flex items-center">
+                    <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1.5 animate-pulse"></i> System Active
+                </span>
+                <button onclick="switchView()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3.5 py-1.5 rounded-lg border border-slate-700 transition font-medium">
+                    Switch to Parent View
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Dynamic Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <!-- LOGIN VIEW -->
-        <div id="login-view" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-slate-100 p-8 mt-6">
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-50 text-emerald-700 rounded-full mb-4 shadow-inner">
-                    <i class="fa-solid fa-user-lock text-2xl"></i>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+                <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-900">Student Portal Login</h2>
-                <p class="text-sm text-slate-500 mt-1">Enter your Student ID to access your portal</p>
-            </div>
-
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Student ID</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                            <i class="fa-solid fa-id-card"></i>
-                        </span>
-                        <input type="text" id="student-id" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition uppercase" placeholder="ROA-2026-0001">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Password</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
-                            <i class="fa-solid fa-lock"></i>
-                        </span>
-                        <input type="password" id="password" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition" placeholder="••••••••">
-                    </div>
-                </div>
-
-                <div id="login-error" class="hidden text-xs text-red-600 bg-red-50 p-3 rounded-lg text-center font-medium border border-red-100"></div>
-
-                <button type="submit" id="login-submit-btn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-emerald-700/20 text-sm">
-                    Sign In to Portal
-                </button>
-            </form>
-        </div>
-
-        <!-- DASHBOARD VIEW -->
-        <div id="dashboard-view" class="hidden space-y-6">
-            <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-emerald-800 to-teal-700 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold" id="welcome-name">Welcome Back, Student</h2>
-                    <p class="text-emerald-100 text-sm mt-1">May Allah bless your pursuit of sacred Islamic knowledge.</p>
-                </div>
-                <div class="bg-emerald-900/60 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-600/50 text-xs font-medium">
-                    <i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i> Status: Active Enrolment
+                    <h2 class="text-xl font-bold text-slate-900">Edit Student Profile: Muhammad</h2>
+                    <p class="text-xs text-slate-500">Update student information and login credentials</p>
                 </div>
             </div>
 
-            <!-- Quick Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-5">
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-book-quran"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Courses</p>
-                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">3 Active</h3>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Attendance</p>
-                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">96%</h3>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-file-pen"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Exams</p>
-                        <h3 class="text-xl font-bold text-slate-800 mt-0.5">Next Mon</h3>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-receipt"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Fee Status</p>
-                        <h3 class="text-xl font-bold text-emerald-600 mt-0.5">Paid</h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Sections Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <form onsubmit="handleUpdateProfile(event)" class="space-y-6">
                 
-                <!-- Left 2 Columns: Courses & Exams -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- Courses Section -->
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                            <i class="fa-solid fa-list-check text-emerald-700 mr-2"></i> Your Current Courses
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-sm text-slate-800">Dars-e-Nizami Core Studies</h4>
-                                    <p class="text-xs text-slate-500 mt-0.5">Instructor: Allama Qadri</p>
-                                </div>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
-                            </div>
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-sm text-slate-800">Tajweed & Qirat Masterclass</h4>
-                                    <p class="text-xs text-slate-500 mt-0.5">Instructor: Qari Raza</p>
-                            </div>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 font-medium px-2.5 py-1 rounded-full">In Progress</span>
-                            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Student Name -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student Name *</label>
+                        <input type="text" id="student-name" value="Muhammad" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                    </div>
+
+                    <!-- Father's Name -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Father's Name *</label>
+                        <input type="text" id="father-name" value="Ali" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                    </div>
+
+                    <!-- NEW: Student ID Field -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student ID (Portal Login) *</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                                <i class="fa-solid fa-id-card"></i>
+                            </span>
+                            <input type="text" id="custom-student-id" value="ROA-2026-0001" required class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition uppercase font-semibold text-emerald-800" placeholder="ROA-2026-0001">
                         </div>
                     </div>
 
-                    <!-- Exams & Quizzes Section -->
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                            <i class="fa-solid fa-clipboard-question text-emerald-700 mr-2"></i> Upcoming Exams & Assessments
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100 flex items-center justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-sm text-slate-800">Fiqh & Aqeedah Monthly Quiz</h4>
-                                    <p class="text-xs text-slate-500 mt-0.5">Date: Monday, 15 Sept 2026 | Time: 04:00 PM</p>
-                                </div>
-                                <span class="text-xs bg-amber-100 text-amber-800 font-medium px-3 py-1.5 rounded-xl">Scheduled</span>
-                            </div>
-                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                                <div>
-                                    <h4 class="font-semibold text-sm text-slate-800">Arabic Grammar Midterm</h4>
-                                    <p class="text-xs text-slate-500 mt-0.5">Date: Next Month | Syllabus: Lessons 1 to 5</p>
-                                </div>
-                                <span class="text-xs bg-slate-200 text-slate-700 font-medium px-3 py-1.5 rounded-xl">Upcoming</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Daily Ibadat Tracker & Announcements -->
-                <div class="space-y-6">
-                    <!-- Daily Ibadat Tracker -->
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                            <i class="fa-solid fa-mosque text-emerald-700 mr-2"></i> Daily Ibadat Tracker
-                        </h3>
-                        <p class="text-xs text-slate-500 mb-4">Mark your daily spiritual routine:</p>
-                        <div class="space-y-2.5 text-sm">
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
-                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Fajr Prayer</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
-                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Zuhur Prayer</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
-                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Asr Prayer</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
-                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Maghrib Prayer</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 cursor-pointer hover:bg-emerald-50/50 transition">
-                                <span class="font-medium text-slate-700 text-xs"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Isha Prayer</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                            <label class="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-100 cursor-pointer hover:bg-emerald-100/50 transition mt-2">
-                                <span class="font-bold text-emerald-900 text-xs"><i class="fa-solid fa-book-open text-emerald-700 mr-2"></i> Daily Tilawat-e-Quran</span>
-                                <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
-                            </label>
-                        </div>
+                    <!-- Select Course -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Course</label>
+                        <select id="student-course" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                            <option selected>Madani Qaida</option>
+                            <option>Dars-e-Nizami Core Studies</option>
+                            <option>Tajweed & Qirat Masterclass</option>
+                            <option>Hifz-e-Quran</option>
+                        </select>
                     </div>
 
-                    <!-- Announcements Section -->
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
-                            <i class="fa-solid fa-bullhorn text-emerald-700 mr-2"></i> Announcements
-                        </h3>
-                        <div class="space-y-3 text-xs">
-                            <div class="p-3 bg-emerald-50/60 border border-emerald-100 rounded-xl">
-                                <span class="font-bold text-emerald-900 block mb-1">Monthly Exam Schedule</span>
-                                <p class="text-slate-600">Upcoming exams will commence from next Monday. Prepare well.</p>
-                            </div>
-                            <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
-                                <span class="font-bold text-slate-800 block mb-1">Live Class Link Updated</span>
-                                <p class="text-slate-600">Check your student group for the new Zoom timings.</p>
-                            </div>
-                        </div>
+                    <!-- Age -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Age *</label>
+                        <input type="number" id="student-age" value="7" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                    </div>
+
+                    <!-- Parent Mobile -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Parent Mobile / WhatsApp</label>
+                        <input type="text" id="parent-mobile" value="+61 431 027 336" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                    </div>
+
+                    <!-- Country & Currency -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Select Country & Currency *</label>
+                        <select id="student-country" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 focus:bg-white text-sm outline-none transition">
+                            <option selected>AU Australia (AUD)</option>
+                            <option>PK Pakistan (PKR)</option>
+                            <option>US United States (USD)</option>
+                            <option>GB United Kingdom (GBP)</option>
+                        </select>
                     </div>
                 </div>
 
-            </div>
+                <!-- Student Photo Upload -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Student Photo (Upload / Image)</label>
+                    <input type="file" id="student-photo" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition">
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center justify-end space-x-4 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="cancelEdit()" class="px-6 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-50 text-sm font-medium transition">
+                        Cancel Edit
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium transition shadow-lg shadow-emerald-700/25">
+                        Update Student Profile
+                    </button>
+                </div>
+            </form>
         </div>
 
     </main>
@@ -247,58 +135,21 @@
         &copy; 2026 Raza Online Islamic Academy. All rights reserved.
     </footer>
 
-    <!-- App Logic Script -->
+    <!-- Script -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedStudent = localStorage.getItem('roa_student_id');
-            if(savedStudent) {
-                showDashboard(savedStudent);
-            }
-        });
-
-        function handleLogin(e) {
+        function handleUpdateProfile(e) {
             e.preventDefault();
-            const studentId = document.getElementById('student-id').value.trim();
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('login-error');
-            const btn = document.getElementById('login-submit-btn');
-
-            btn.disabled = true;
-            btn.innerText = "Verifying ID...";
-            errorDiv.classList.add('hidden');
-
-            setTimeout(() => {
-                if(studentId && password.length >= 4) {
-                    localStorage.setItem('roa_student_id', studentId);
-                    showDashboard(studentId);
-                } else {
-                    errorDiv.innerText = "Please enter a valid Student ID and password (min 4 chars).";
-                    errorDiv.classList.remove('hidden');
-                    btn.disabled = false;
-                    btn.innerText = "Sign In to Portal";
-                }
-            }, 600);
+            const studentId = document.getElementById('custom-student-id').value;
+            alert("Student Profile Updated Successfully! Student ID: " + studentId);
         }
 
-        function showDashboard(studentId) {
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-            document.getElementById('logout-btn').classList.remove('hidden');
-            const badge = document.getElementById('user-badge');
-            badge.innerText = `ID: ${studentId}`;
-            badge.classList.remove('hidden');
-            document.getElementById('welcome-name').innerText = `Welcome, Student (${studentId})`;
+        function cancelEdit() {
+            alert("Edit cancelled.");
         }
 
-        function logout() {
-            localStorage.removeItem('roa_student_id');
-            location.reload();
-        }
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('Service Worker Registered Successfully'));
+        function switchView() {
+            alert("Switching to Parent View...");
         }
     </script>
 </body>
-</html>
+</html>v
